@@ -1,0 +1,10 @@
+App 
+    header 
+    products  
+        productitems
+    message
+    cart 
+        cartItems
+        cartresult
+
+    footer 
