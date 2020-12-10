@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Cart from './components/Cart';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Message from './components/Message';
-import Products from './components/Products';
+import CartContainer from './containers/CartContainer';
+import ProductsContainer from './containers/ProductsContainer';
 
 
 
@@ -14,9 +14,9 @@ class App extends Component {
         <Header/>
         <main id="mainContainer">
             <div className="container">
-                <Products/>
+                <ProductsContainer/>
                 <Message/>
-                <Cart/>
+                <CartContainer/>
             </div>
         </main>
       <Footer/>
