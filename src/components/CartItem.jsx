@@ -51,9 +51,9 @@ class CartItem extends Component {
         </tr>
     );
   }
-  showTotal(price, quantity){
-    return price*quantity;
-  }
+  // showTotal(price, quantity){
+  //   return price*quantity;
+  // }
 }
 
 export default CartItem;

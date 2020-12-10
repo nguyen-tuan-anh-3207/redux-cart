@@ -1,41 +1,28 @@
 import * as types from '../constants/ActionType';
 
 var data = JSON.parse(localStorage.getItem('CART'));
-var innitialState =  [
-    {
-        product:{
-            id: 1,
-            name : 'Iphone 7 Plus',
-            image: 'https://cdn.tgdd.vn/Products/Images/42/213031/TimerThumb/iphone-12-blue-600x600-thumb-hen-gio.jpg',
-            description : 'Sản phẩm do apple sản xuất',
-            price: 500,
-            inventory: 10,
-            rating: 3
-        },
-        quantity : 6
-    },
-    {
-        product:{
-            id: 3,
-            name : 'oppo 7 ',
-            image: 'https://cf.shopee.com.my/file/acda6e55eaf036240097586785297bc8',
-            description : 'Sản phẩm do oppo sản xuất',
-            price: 550,
-            inventory: 20,
-            rating: 5
-                },
-        quantity : 3
-    }
-];
-
-const cart= (state = innitialState, action) =>{
+var initialState = data? data: [];
+const cart= (state = initialState, action) =>{
+    var {product, quantity} = action;
+    var index = -1;
     switch(action.type) {
         case types.ADD_TO_CART:
-            console.log(action);
+            index  = state.findIndex(x => x.product.id === product.id)
+            if (index !== -1 ){
+                state[index].quantity += quantity;
+            }else {
+                state.push({
+                product,
+                quantity
+            })
+            }
+            //console.log(action)
+            localStorage.setItem('CART', JSON.stringify(state) )
             return [...state];
         default: 
             return [...state];
     }
+    
 };
 
 

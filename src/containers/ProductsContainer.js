@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Products from '../components/Products';
 import Product from '../components/Product';
 import PropTypes from 'prop-types';
+import {actAddToCart} from '../actions/index'
 
 class ProductsContainer extends Component {
     render() { 
@@ -14,10 +15,15 @@ class ProductsContainer extends Component {
         );
     }
     showProducts(products){
+    var {onAddToCart} = this.props;
     var result = null;
     if(products.length >0){
         result = products.map((product, index)=>{
-            return <Product key={index} product = {product}/>
+            return <Product 
+                        key={index} 
+                        product = {product}
+                        onAddToCart = {onAddToCart}
+                        />
         })
     }
   return result;
@@ -45,5 +51,13 @@ const mapStateToProps = (state, ownProps) => {
         products: state.products
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAddToCart : (product) =>{
+            dispatch(actAddToCart(product, 1))
+        }
+    }
+}
  
-export default connect(mapStateToProps,null)(ProductsContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer);
