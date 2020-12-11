@@ -83,10 +83,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onDeleteProductInCart: (product) => {
             dispatch(actDeleteProductInCart(product))
         },
-        onChangeMessage: (message) =>{
+        onChangeMessage: (message) =>{ //thay đổi mesage
             dispatch(actChangeMessage(message));
         },
-        onUpdateProductInCart : (product, quantity)=>{
+        onUpdateProductInCart : (product, quantity)=>{ 
             dispatch(actUpdateProductInCart(product, quantity));
         }
     }

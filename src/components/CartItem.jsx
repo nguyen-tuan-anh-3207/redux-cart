@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as Message from '../constants/Message';
-//chỉ render thep props
+//chỉ render UI thep props
 class CartItem extends Component {
 
   render() {
@@ -60,13 +60,13 @@ class CartItem extends Component {
   // showTotal(price, quantity){
   //   return price*quantity;
   // }
-  onDelete = (product) =>{
+  onDelete = (product) =>{ //xóa item trong giỏ hàng
     var {onDeleteProductInCart,onChangeMessage} = this.props;
     console.log(product);
     onDeleteProductInCart(product);
     onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCESS);
   }
-
+//update giỏ hàng
   onUpdateQuantity = (product, quantity)=>{
     if(quantity >0){
       this.props.onUpdateProductInCart(product, quantity);
