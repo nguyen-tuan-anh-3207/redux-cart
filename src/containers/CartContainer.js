@@ -5,6 +5,7 @@ import Cart from '../components/Cart';
 import * as Message from '../constants/Message';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
+import {actDeleteProductInCart,actChangeMessage} from '../actions/index'
 //quản lí logic
 class CartContainer extends Component {
     render() { 
@@ -25,6 +26,8 @@ class CartContainer extends Component {
                         key = {index}
                         total = {item.product.price*item.quantity} //tính tổng tiền của từng sản phẩm
                         item = {item}
+                        onDeleteProductInCart = {this.props.onDeleteProductInCart}
+                        onChangeMessage ={this.props.onChangeMessage}
                     />
             )
         }
@@ -73,5 +76,15 @@ const mapStateToProps = (state, ownProps) => {
         cart: state.cart
     }
 }
- 
-export default connect(mapStateToProps,null)(CartContainer);
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onDeleteProductInCart: (product) => {
+            dispatch(actDeleteProductInCart(product))
+        },
+        onChangeMessage: (message) =>{
+            dispatch(actChangeMessage(message));
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(CartContainer);
