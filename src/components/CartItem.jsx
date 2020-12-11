@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import * as Message from '../constants/Message';
 //chỉ render thep props
 class CartItem extends Component {
+
   render() {
     var {total,item} = this.props;
+    var {quantity} = item.quantity >0? item : this.state;
     return (
         <tr>
           <th scope="row">
@@ -20,15 +22,17 @@ class CartItem extends Component {
           </td>
           <td>{item.product.price}$</td>
           <td className="center-on-small-only">
-            <span className="qty">{item.quantity} </span>
+            <span className="qty">{quantity} </span>
             <div className="btn-group radio-group" data-toggle="buttons">
               <label
+                onClick = {()=>{this.onUpdateQuantity(item.product,item.quantity-1)}}
                 className="btn btn-sm btn-primary
                                                 btn-rounded waves-effect waves-light"
               >
                 <a>—</a>
               </label>
               <label
+                onClick = {()=>{this.onUpdateQuantity(item.product,item.quantity +1)}}
                 className="btn btn-sm btn-primary
                                                 btn-rounded waves-effect waves-light"
               >
@@ -62,6 +66,16 @@ class CartItem extends Component {
     onDeleteProductInCart(product);
     onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCESS);
   }
+
+  onUpdateQuantity = (product, quantity)=>{
+    if(quantity >0){
+      this.props.onUpdateProductInCart(product, quantity);
+      this.props.onChangeMessage(Message.MSG_UPDATE_CART_SUCCESS);
+    }
+  }
+
+
+
 }
 
 export default CartItem;

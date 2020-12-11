@@ -5,7 +5,7 @@ import Cart from '../components/Cart';
 import * as Message from '../constants/Message';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
-import {actDeleteProductInCart,actChangeMessage} from '../actions/index'
+import {actDeleteProductInCart,actChangeMessage, actUpdateProductInCart} from '../actions/index'
 //quản lí logic
 class CartContainer extends Component {
     render() { 
@@ -28,6 +28,7 @@ class CartContainer extends Component {
                         item = {item}
                         onDeleteProductInCart = {this.props.onDeleteProductInCart}
                         onChangeMessage ={this.props.onChangeMessage}
+                        onUpdateProductInCart = {this.props.onUpdateProductInCart}
                     />
             )
         }
@@ -84,6 +85,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onChangeMessage: (message) =>{
             dispatch(actChangeMessage(message));
+        },
+        onUpdateProductInCart : (product, quantity)=>{
+            dispatch(actUpdateProductInCart(product, quantity));
         }
     }
 }
